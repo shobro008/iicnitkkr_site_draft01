@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IIC NIT Kurukshetra Division</title>
+  <style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+/* American-styled clean font & layout */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans&display=swap');
+
+header {
+  background-color: #ffffff;
+  color: #3c3b6e;
+  padding: 1rem 2rem;
+  border-bottom: 3px solid #b22234;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.logo {
+  height: 100px;
+  max-width: 110px;
+}
+
+
+.header-text {
+  text-align: center;
+  max-width: 600px;
+}
+
+.main-title {
+  font-family: 'Merriweather', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3c3b6e;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.sub-title {
+  font-size: 1rem;
+  color: #b22234;
+  letter-spacing: 0.5px;
+  margin-top: 0.2rem;
+  font-weight: 600;
+}
+
+nav {
+  background-color: #3c3b6e;
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  flex-wrap: wrap;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0.5rem 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel {
+  position: relative;
+  width: 80%;
+  height: 300px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.carousel-slide::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg);
+  background-size: cover;
+  background-position: center;
+  filter: blur(10px) brightness(0.6);
+  z-index: -1;
+}
+
+.carousel-slide img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+  background-color: #f0f0f0;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.hero img {
+  width: 300px;
+  border-radius: 8px;
+  border: 3px solid #3c3b6e;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.buttons a {
+  background: linear-gradient(to bottom, #b22234, #7a141f);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 5px 0 #3c3b6e;
+  transition: all 0.2s ease;
+  display: inline-block;
+  border: none;
+}
+
+.buttons a:hover {
+  background: linear-gradient(to bottom, #c62828, #8b1b1b);
+  transform: translateY(-2px);
+  box-shadow: 0 7px 5px rgba(0, 0, 0, 0.2);
+}
+
+.buttons a:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #3c3b6e;
+}
+
+.section {
+  padding: 2rem;
+  text-align: center;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.stat-card {
+  background-color: #f5f5f5;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  width: 150px;
+  border: 2px solid #3c3b6e;
+  color: #3c3b6e;
+}
+
+.activities {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+}
+
+.activity-card {
+  border: 2px solid #b22234;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 200px;
+  text-align: center;
+  background-color: #fff;
+}
+
+.activity-card img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #3c3b6e;
+  color: white;
+  font-weight: bold;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0.5rem 1rem;
+  font-size: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+
+.dropbtn:hover {
+  text-decoration: underline;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown:focus-within .dropdown-content {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 220px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown-content a {
+  color: #3c3b6e;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  display: block;
+  font-weight: 500;
+}
+
+.dropdown-content a:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #b22234;
+}
+
+</style>
+
+</head>
+<body>
+
+  <header>
+  <div class="header-inner">
+    <img src="nitlogo.png" alt="NIT KKR Logo" class="logo left-logo" />
+    <div class="header-text">
+      <div class="main-title">Institution’s Innovation Council</div>
+      <div class="sub-title">NIT Kurukshetra Division</div>
+      <div class="sub-title">(Under Ministry of Education, Govt. of India)</div>
+    </div>
+    <img src="logoiic.jpeg" alt="IIC Logo" class="logo right-logo" />
+  </div>
+</header>
+
+
+
+  <nav>
+  <a href="#">Home</a>
+
+  <div class="dropdown">
+    <button class="dropbtn">About IIC</button>
+    <div class="dropdown-content">
+      <a href="iic-structure.html" target="_blank">IIC Mission</a>
+      <a href="5112.pdf" target="_blank">IIC Coordinators Details- NITKKR</a>
+      <a href="iic-coordinators.html">IIC Administration - NIT KKR</a>
+      <a href="#">Innovation Ambassadors - NIT KKR</a>
+    </div>
+  </div>
+
+  <a href="#">Activities</a>
+  <a href="#">IIC Activity Calendar</a>
+  <a href="#">Gallery</a>
+</nav>
+
+
+  <!-- 👇 CAROUSEL SECTION START -->
+  <section class="carousel-container">
+  <div class="carousel">
+    <div class="carousel-slide active" style="--bg: url('DSC_3513.jpg');">
+      <img src="DSC_3513.jpg" alt="Event Highlight 1">
+    </div>
+    <div class="carousel-slide" style="--bg: url('DSC_3517.jpg');">
+      <img src="DSC_3517.jpg" alt="Event Highlight 2">
+    </div>
+    <div class="carousel-slide" style="--bg: url('DSC_3561.jpg');">
+      <img src="DSC_3561.jpg" alt="Event Highlight 3">
+    </div>
+  </div>
+</section>
+
+  <!-- ☝️ CAROUSEL SECTION END -->
+
+  <div class="hero">
+    <img src="DEMODDAY.jpg" alt="Demo Day" />
+    <img src="DSC_9233.jpg" alt="Innovation Challenge" />
+    <img src="DSC_9561.jpg" alt="Idea Showcase" />
+  </div>
+
+  <div class="buttons">
+    <a href="#">Submit Idea</a>
+    <a href="#">Upcoming Events</a>
+    <a href="#">Join IIC</a>
+  </div>
+
+  <div class="section">
+    <h2>Mission & Vision</h2>
+    <p>We nurture innovation culture in students to foster new ideas and promote entrepreneurial spirit.</p>
+    <div class="stats">
+      <div class="stat-card">
+        <h3>100+</h3>
+        <p>Startup Ideas</p>
+      </div>
+      <div class="stat-card">
+        <h3>₹25L+</h3>
+        <p>Grants Secured</p>
+      </div>
+      <div class="stat-card">
+        <h3>50+</h3>
+        <p>Events Conducted</p>
+      </div>
+      <div class="stat-card">
+        <h3>20+</h3>
+        <p>Prototypes</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Ongoing and Past Activities</h2>
+    <div class="activities">
+      <div class="activity-card">
+        <img src="DSC_2143.jpg" alt="Smart India Hackathon">
+        <h4>Smart India Hackathon</h4>
+        <a href="#">Read More</a>
+      </div>
+      <div class="activity-card">
+        <img src="WhatsApp Image 2025-05-29 at 22.43.07_99d26c3e.jpg" alt="B-Plan Competition">
+        <h4>B-Plan Competition</h4>
+        <a href="#">Read More</a>
+      </div>
+      <div class="activity-card">
+        <img src="WhatsApp Image 2025-05-29 at 22.43.07_d7e628c5.jpg" alt="Startup Summit">
+        <h4>Startup Summit</h4>
+        <a href="#">Read More</a>
+      </div>
+      <div class="activity-card">
+        <img src="WhatsApp Image 2025-05-29 at 22.43.08_30f82f99.jpg" alt="Idea Showcase">
+        <h4>Idea Showcase</h4>
+        <a href="#">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Institution’s Innovation Council, NIT Kurukshetra Division
+  </footer>
+
+  <!-- 👇 JavaScript for Auto Carousel -->
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+
+    function showNextSlide() {
+      slides[currentSlide].classList.remove('active');
+      currentSlide = (currentSlide + 1) % slides.length;
+      slides[currentSlide].classList.add('active');
+    }
+
+    setInterval(showNextSlide, 4000); // Change every 4 seconds
+  </script>
+
+</body>
+</html>
